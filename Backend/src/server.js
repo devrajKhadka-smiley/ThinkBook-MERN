@@ -5,17 +5,21 @@ import express from "express";
 import noteRoutes from "./routes/noteRoutes.js";
 import { connectdb } from "./config/db.js";
 import dotenv from "dotenv";
+import ratelimiter from "./middlware/ratelimiter.js";
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-connectdb();
+// connectdb();
 
 //Middleware
 app.use(express.json());
+app.use(ratelimiter); //::1 localhost for ip
 app.use("/api/notes/", noteRoutes);
 
-app.listen(PORT, () => {
-  console.log("Server is running on port", PORT);
-});
+connectdb().then(() => {
+  app.listen(PORT, () => {
+    console.log("Server is running on port", PORT);
+  });
+}); 
