@@ -10,9 +10,9 @@
 //   res.status(200).json({ message: "Put Updated successfully!" });
 // }
 
-export function deletenote(req, res) {
-  res.status(200).json({ message: "delete Updated successfully!" });
-}
+// export function deletenote(req, res) {
+//   res.status(200).json({ message: "delete Updated successfully!" });
+// }
 
 // export { getallnotes };
 
@@ -75,5 +75,19 @@ export async function updatenote(req, res) {
     res
       .status(500)
       .json({ message: "Error updating note", error: error.message });
+  }
+}
+
+export async function deletenote(req, res) {
+  try {
+    const deletedNote = await Note.findByIdAndDelete(req.params.id);
+    if (!deletedNote) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+
+    res.status(200).json({ message: "Note deleted successfully!" });
+  } catch (error) {
+    console.error("Error deleting note:", error);
+    res.status(500).json({ message: "Server error" });
   }
 }
