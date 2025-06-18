@@ -10,19 +10,23 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("HomePage mounted");
     const fetchNotes = async () => {
       try {
         const res = await axios.get("http://localhost:5001/api/notes");
         const data = res.data;
         console.log("Notes loaded!", data);
         setNotes(data);
-        setLoading(false);
+        setIsRatelimited(false); // ✅ explicitly reset if successful
       } catch (error) {
         console.log("Error fetching notes:", error);
-        setIsRatelimited(true);
+        if (error.response?.status === 429) {
+          setIsRatelimited(true); // ✅ triggered only on 429
+        } else {
+          toast.error("Failed to load notes.");
+          setIsRatelimited(false); // ✅ in case of other errors
+        }
+      } finally {
         setLoading(false);
-        console.log("Failed to fetch notes");
       }
     };
 
@@ -30,7 +34,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="p-4 min-h-screen bg-base-100">
+    <div className="min-h-screen">
       <Navbar />
       {isRateLimited && <RateLimitUI />}
     </div>
