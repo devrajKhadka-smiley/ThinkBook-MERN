@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import RateLimitUI from "../components/RateLimitUI";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import NoteCard from "../components/NoteCard";
 
 const HomePage = () => {
   const [isRateLimited, setIsRatelimited] = useState(false);
@@ -44,9 +45,7 @@ const HomePage = () => {
         ) : isRateLimited ? null : notes.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {notes.map((note, idx) => (
-              <div key={idx}>
-                {note.title} || {note.content}
-              </div>
+             <NoteCard  key={note._id} note={note}/>
             ))}
           </div>
         ) : (
