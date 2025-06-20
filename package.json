@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npm install --prefix Backend && npm install --prefix frontend/vite-project && npm run build --prefix frontend/vite-project",
+    "build": "npm install --prefix Backend && npm install --prefix Frontend/vite-project && npm run build --prefix Frontend/vite-project",
     "start": "npm run start --prefix Backend" 
   },
   "author": "Dev Raj Khadka",
