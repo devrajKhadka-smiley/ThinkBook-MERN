@@ -4,7 +4,7 @@ import { GitPullRequestCreate } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <header className="bg-base-300 border-b border-base-content/10">
+    <header className="sticky top-0 z-50 bg-base-300 border-b border-base-content/10  shadow-[0_4px_8px_0_rgba(0,255,157,0.3)]">
       <div className="mx-auto max-w-6xl p-4">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold text-primary font-mono tracking-tight">
