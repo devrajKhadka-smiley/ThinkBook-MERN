@@ -1,0 +1,16 @@
+{
+  "name": "mern-thinkboard",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend/vite-project && npm run build --prefix frontend/vite-project",
+    "start": "npm run start --prefix backend" 
+  },
+  "author": "Dev Raj Khadka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devrajKhadka-smiley/ThinkBook-MERN/issues"
+  },
+  "homepage": "https://github.com/devrajKhadka-smiley/ThinkBook-MERN#readme",
+  "description": ""
+}
